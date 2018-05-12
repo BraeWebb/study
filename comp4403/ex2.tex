@@ -1,0 +1,25 @@
+\begin{topic}{Question Two}
+
+\begin{java}
+public int g(int v) {
+    if (v>5) {
+        return 0;
+    }
+    if (v<=0) {
+        return Math.abs(v)+g(v+2);
+    }
+    return (v-1)+g(v+1);
+}
+\end{java}
+
+What would be returned by the following calls? g(2), g(0), g(-5)
+
+\begin{subtopic}{2-}
+\textbf{Recursive Desk Check} - Can you do it?
+\end{subtopic}
+
+\begin{subtopic}{3-}
+\textbf{Hint:} Sometimes you can use your other working to come to a solution quicker
+\end{subtopic}
+
+\end{topic}
