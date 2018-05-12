@@ -1,0 +1,53 @@
+\documentclass[12,a4paper]{article}
+
+% Programming language formatting
+\input{languages}
+
+\usepackage{adjustbox}
+
+% Page formatting
+\newenvironment{topic}[1]
+	{\begin{section}{#1}}
+	{\end{section}}
+
+\newenvironment{subtopic}[1]
+	{
+  \par\smallskip\par\noindent
+  \adjustbox{
+        minipage=\linewidth-0.6in,
+        fbox=1pt,
+        Clip=0pt 1pt 1pt 1pt,
+        center
+    }\bgroup}
+	{\egroup
+    \par\smallskip\par}
+
+\usepackage[margin=3cm]{geometry}
+
+% Title page information
+\title{\MakeUppercase{\jobname} Study Notes}
+\author{Brae}
+\date{Semester 1, 2018}
+
+
+% Magic: https://tex.stackexchange.com/questions/154237/how-to-access-ith-argument-of-a-macro
+% (Include from command line)
+\usepackage{stringstrings}
+\newcounter{index}
+\newcommand{\importfile}[2]{\input{#2}}
+\newcommand{\importfiles}[1]{
+  \getargs{#1}
+  \setcounter{index}{0}
+  \whiledo{\theindex < \narg}{
+    \stepcounter{index}
+    \importfile{\theindex}{\csname arg\romannumeral\theindex\endcsname}
+  }
+}
+
+\begin{document}
+
+\maketitle
+
+\importfiles{\files}
+
+\end{document}

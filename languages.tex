@@ -1,16 +1,17 @@
+\usepackage{color}
 \usepackage{listings}
 \lstnewenvironment{python}{\lstset{language=python}}{}
-\lstnewenvironment{java}{\lstset{style=customjava,language=java}}{}
-\lstnewenvironment{javaxs}{\lstset{basicstyle=\tiny,style=customjava,language=java}}{}
+\lstnewenvironment{java}{\lstset{language=java}}{}
 
-\lstdefinestyle{customjava}{
-  belowcaptionskip=1\baselineskip,
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize,
   breaklines=true,
-  language=java,
-  showstringspaces=false,
-  basicstyle=\footnotesize\ttfamily,
-  keywordstyle=\bfseries\color{green!40!black},
-  commentstyle=\itshape\color{purple!40!black},
-  identifierstyle=\color{blue},
-  stringstyle=\color{orange},
+  captionpos=b,
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941}
 }
