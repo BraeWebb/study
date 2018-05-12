@@ -1,0 +1,49 @@
+\begin{topic}{JML Constructors}
+
+\begin{java}
+/*@ requires c >= 0;
+  @ ensures getCredits == c;
+  @*/
+public Constructor(int c) {
+    this.c = c;
+}
+\end{java}
+
+\begin{subtopic}{2}
+Constructors can only reference parameters not instance variables as they have not yet been initialized.
+\end{subtopic}
+
+\end{topic}
+
+\begin{topic}{JML Visibility}
+
+Specifications obey visibility of java access modifieres unless overriden by above syntax
+
+\begin{java}
+/*@ spec_public */ private int status;
+\end{java}
+
+\end{topic}
+
+\begin{topic}{JML Invariants}
+
+Invariants are always true properties of a class which are:
+\begin{itemize}
+ \item ensured by a constructor
+ \item maintained by each method
+\end{itemize}
+
+\begin{java}
+/*@ invariant x;
+  @ invariant y;
+  @*/
+\end{java}
+
+\begin{subtopic}{2}
+Helper methods do not need to maintain the invariant
+\begin{java}
+private /*@ helper @*/ helperMethod() {}
+\end{java}
+\end{subtopic}
+
+\end{topic}
