@@ -12,7 +12,7 @@ all: $(COURSES)
 		make build COURSE=$${course}; \
 	done
 
-build: slide.tex $(find_files)
+build: $(find_files)
 	make slide COURSE=$(COURSE)||true
 	make pages COURSE=$(COURSE)
 

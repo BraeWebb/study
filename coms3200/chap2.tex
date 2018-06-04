@@ -12,11 +12,11 @@ Implementation aspects of network protocols
 
 \begin{topic}{Network Applications}
 
-Network applications run on \texttt{different end systems} (network edges) and \texttt{communicate over the network.}
+Network applications run on \textbf{different end systems} (network edges) and \textbf{communicate over the network.}
 
 Network applications \textbf{do not} run on network cores.
 
-Network applications allow for \texttt{rapid app development and propagation.}
+Network applications allow for \textbf{rapid app development and propagation.}
 
 \end{topic}
 
@@ -28,26 +28,26 @@ Network applications allow for \texttt{rapid app development and propagation.}
 \end{itemize}
 
 \begin{subtopic}{2}
-\texttt{Client-server Architecture} is the classical architecture consisting of communication between \texttt{multiple clients} and a \texttt{singular server.}
+\textbf{Client-server Architecture} is the classical architecture consisting of communication between \textbf{multiple clients} and a \textbf{singular server.}
 
-The server is \texttt{always-on} with a \texttt{fixed address} that \texttt{can be scaled} to multiple devices.
+The server is \textbf{always-on} with a \textbf{fixed address} that \textbf{can be scaled} to multiple devices.
 
-Clients communicate with directly with the server and \texttt{do not need to be always on or have a fixed address.} Clients \texttt{do not communicate with each other.}
+Clients communicate with directly with the server and \textbf{do not need to be always on or have a fixed address.} Clients \textbf{do not communicate with each other.}
 \end{subtopic}
 
 \begin{subtopic}{3}
-\texttt{Peer-to-peer Architecture} is a form of network communication where clients (now peers) do not connect to an always-on server and instead \texttt{communicate directly with each other.}
+\textbf{Peer-to-peer Architecture} is a form of network communication where clients (now peers) do not connect to an always-on server and instead \textbf{communicate directly with each other.}
 
 Peers request service from other peer and provide service in return to other peers. Think torrents.
 
-Peers are \texttt{intermittently connected and can change addresses.}
+Peers are \textbf{intermittently connected and can change addresses.}
 \end{subtopic}
 
 \end{topic}
 
 \begin{topic}{Processes}
 
-A \texttt{Process} is a program running within a host.
+A \textbf{Process} is a program running within a host.
 
 Inter-process communication is two processes communicating on the same host.
 
@@ -60,7 +60,7 @@ Messages are exchanged by processes communicating on different hosts.
 \end{subtopic}
 
 \begin{subtopic}{3-}
-\texttt{P2P Applications have both client and server processes}
+\textbf{P2P Applications have both client and server processes}
 \end{subtopic}
 
 \end{topic}
@@ -69,16 +69,99 @@ Messages are exchanged by processes communicating on different hosts.
 
 Processes send and receive messages to and from sockets.
 
-\texttt{Sockets} are connections between host devices.
+\textbf{Sockets} are connections between host devices.
 
 \end{topic}
 
 \begin{topic}{Addressing Processes}
 
-Processes require \texttt{identifiers} so that messages can be sent back to the correct process.
+Processes require \textbf{identifiers} so that messages can be sent back to the correct process.
 
-Each \texttt{host} has a \texttt{32-bit IP address.}
+Each \textbf{host} has a \textbf{32-bit IP address.}
 
-A host can have \texttt{multiple processes} so IP addresses are combined with \texttt{port numbers} as \texttt{identifiers.}
+A host can have \textbf{multiple processes} so IP addresses are combined with \textbf{port numbers} as \textbf{identifiers.}
+
+\end{topic}
+
+\begin{topic}{App-Layer Protocol}
+
+App-Layer Protocol defines:
+\begin{itemize}
+	\item \textbf{type of message} e.g. request, response
+	\item \textbf{message syntax:} message fields and encoding
+	\item \textbf{message semantics:} meaning of the fields
+	\item \textbf{rules:} how processes should send/receive messages
+\end{itemize}
+
+\begin{subtopic}{2-}
+Open protocols:
+\begin{itemize}
+	\item defined in \textbf{RFCs}
+	\item allows for \textbf{interoperability}
+\end{itemize}
+\end{subtopic}
+
+\begin{subtopic}{3-}
+Proprietary protocols:
+\begin{itemize}
+	\item normally implemented for a specific proprietary application
+\end{itemize}
+\end{subtopic}
+
+\end{topic}
+
+\begin{topic}{Transport Service Considerations}
+
+\begin{subtopic}{1-}
+\textbf{Data Integrity}
+Reliability of data to reach the destination.
+Some applications require all data to reach the destination.
+\end{subtopic}
+
+\begin{subtopic}{2-}
+\textbf{Timing}
+Speed transportation takes.
+Some applications require fast transportation to work well.
+\end{subtopic}
+
+\begin{subtopic}{3-}
+\textbf{Throughput}
+Amount of data in a transfer.
+Some applications require large throughput while others require minimal throughput.
+\end{subtopic}
+
+\end{topic}
+
+\begin{topic}{TCP \& UDP}
+\begin{multicols}{2}
+\textbf{TCP}\\
+
+\begin{itemize}
+	\item \textbf{reliable} transport protocol
+	\item \textbf{flow control} prevent overwhelming receiver
+	\item \textbf{congestion control} prevent overwhelming network
+	\item \textbf{no} timing, minimum throughput guarantee, security
+	\item \textbf{setup required} connections need to be established
+\end{itemize}
+
+\columnbreak
+\textbf{UDP}\\
+
+\begin{itemize}
+	\item \textbf{unreliable} transport protocol
+	\item \textbf{no} flow control, congestion control, timing, throughput guarantee, security, or connection setup
+\end{itemize}
+\end{multicols}
+\end{topic}
+
+\begin{topic}{Secure TCP}
+
+TCP \& UCP connections have \textbf{no encryption.}
+
+\textbf{SSL} connections are encrypted TCP connections.
+
+SSL connections increase \textbf{data integrity} and offer \textbf{end-point authentication.}
+
+SSL is an application layer protocol. Applications use SSL libraries.
 
 \end{topic}
