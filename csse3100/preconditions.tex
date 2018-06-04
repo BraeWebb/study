@@ -1,0 +1,22 @@
+\input{csse3100/symbols}
+
+\newcommand\specstate[3]{#1:[\,#2, #3]\,}
+\newcommand\composition[4]{\specstate{#1}{#2}{#3} \fine \specstate{#1}{#2}{#4}; \specstate{#1}{#4}{#3}}
+
+\newcommand\compproof[4]{\specstate{#1}{#2}{#3}\\
+						 \fine (Composition: choose M as #4)\\
+						 \specstate{#1}{#2}{#4}; \specstate{#1}{#4}{#3}}
+
+\begin{topic}{Weakest Precondition}
+
+$$
+Q \implies P\\
+
+w:[\,P, Q]\, \fine w:[\,P, M]\,; w:[\,M, Q]\,
+
+\composition{w}{P}{Q}{M}
+
+\compproof{w}{P}{Q}{M}
+$$
+
+\end{topic}
