@@ -1,0 +1,84 @@
+\documentclass[10,landscape,a4paper]{article}
+
+% Programming language formatting
+\input{languages}
+
+\usepackage{adjustbox}
+\usepackage{multicol}
+
+% Page formatting
+\newenvironment{topic}[1]
+	{\begin{section}{#1}}
+	{\end{section}}
+
+\newenvironment{subtopic}[1]
+	{
+  \par\smallskip\par\noindent
+  \adjustbox{
+        minipage=\linewidth-0.6in,
+        fbox=1pt,
+        Clip=0pt 1pt 1pt 1pt,
+        center
+    }\bgroup}
+	{\egroup
+    \par\smallskip\par}
+
+\usepackage{geometry}
+
+\geometry{top=.5in,left=.5in,right=.5in,bottom=.5in}
+
+\pagestyle{empty}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Title page information
+\title{\MakeUppercase{\jobname} Cheat Sheet}
+\author{Brae}
+\date{Semester 1, 2018}
+
+
+% Magic: https://tex.stackexchange.com/questions/154237/how-to-access-ith-argument-of-a-macro
+% (Include from command line)
+\usepackage{stringstrings}
+\newcounter{index}
+\newcommand{\importfile}[2]{\input{#2}}
+\newcommand{\importfiles}[1]{
+  \getargs{#1}
+  \setcounter{index}{0}
+  \whiledo{\theindex < \narg}{
+    \stepcounter{index}
+    \importfile{\theindex}{\csname arg\romannumeral\theindex\endcsname}
+  }
+}
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+\importfiles{\files}
+
+\end{multicols}
+
+\end{document}
